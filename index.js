@@ -1,57 +1,87 @@
-var products = [
-    { id: 1, name: "Blueberry Cheesecake", price: 200.00 },
-    { id: 2, name: "Cool Mint", price: 300.00 },
-    { id: 3, name: "Neapolitan", price: 270.00 },
-    { id: 4, name: "Raspberry and White Chocolate", price: 190.00 },
-    { id: 5, name: "Strawberry Marshmallow", price: 250.00 },
-    { id: 6, name: "Triple Nut Caramel", price: 300.00 },
-    { id: 7, name: "Pina Colada", price: 250.00 },
-    { id: 8, name: "Vanilla Special", price: 200.00 }
-];
+var product1 = document.getElementById('product1').textContent
+      var qty1 = document.getElementById('qty1')
+      var price1 = parseFloat(
+        document.getElementById('price1').textContent.replace('Php', '').trim()
+      )
 
+      var product2 = document.getElementById('product2').textContent
+      var qty2 = document.getElementById('qty2')
+      var price2 = parseFloat(
+        document.getElementById('price2').textContent.replace('Php', '').trim()
+      )
 
-var qtyInputs = document.querySelectorAll('[id^="qty"]');
-var carts = document.getElementById("carts");
-var totalInput = document.getElementById("total");
-var cashInput = document.getElementById("cash");
-var changeInput = document.getElementById("change");
+      var product3 = document.getElementById('product3').textContent
+      var qty3 = document.getElementById('qty3')
+      var price3 = parseFloat(
+        document.getElementById('price3').textContent.replace('Php', '').trim()
+      )
 
+      var carts = document.getElementById('carts')
+      var total = document.getElementById('total')
+      var cash = document.getElementById('cash')
+      var change = document.getElementById('change')
 
-qtyInputs.forEach(function(qtyInput) {
-    qtyInput.addEventListener("input", addOrder);
-});
+      function addOrder() {
+        carts.textContent = ''
+        var totalPrice = 0
 
-cashInput.addEventListener("input", calculateChange);
-
-
-function addOrder() {
-    carts.textContent = ""; // Clear previous cart content
-
-    var total = 0;
-
-    qtyInputs.forEach(function(qtyInput, index) {
-        var qty = parseFloat(qtyInput.value);
-        if (qty > 0) {
-            var product = products[index];
-            var order = qty + " pcs x " + product.name + " - Php " + (qty * product.price).toFixed(2) + "\n";
-            carts.textContent += order;
-            total += qty * product.price;
+        if (parseFloat(qty1.value) > 0) {
+          var order =
+            qty1.value.toString() +
+            ' pc/s x Php ' +
+            price1 +
+            ' ------ ' +
+            product1 +
+            ' ------ ' +
+            parseFloat(qty1.value) * price1 +
+            '\n'
+          carts.textContent += order
+          totalPrice += parseFloat(qty1.value) * price1
         }
-    });
 
-    totalInput.value = total.toFixed(2); // Update total
-    calculateChange(); // Recalculate change
-}
+        if (parseFloat(qty2.value) > 0) {
+          var order =
+            qty2.value.toString() +
+            ' pc/s x Php ' +
+            price2 +
+            ' ------ ' +
+            product2 +
+            ' ------ ' +
+            parseFloat(qty2.value) * price2 +
+            '\n'
+          carts.textContent += order
+          totalPrice += parseFloat(qty2.value) * price2
+        }
+
+        if (parseFloat(qty3.value) > 0) {
+          var order =
+            qty3.value.toString() +
+            ' pc/s x Php ' +
+            price3 +
+            ' ------ ' +
+            product3 +
+            ' ------ ' +
+            parseFloat(qty3.value) * price3 +
+            '\n'
+          carts.textContent += order
+          totalPrice += parseFloat(qty3.value) * price3
+        }
 
 
-function calculateChange() {
-    var total = parseFloat(totalInput.value);
-    var cash = parseFloat(cashInput.value);
 
-    if (!isNaN(total) && !isNaN(cash)) {
-        var change = cash - total;
-        changeInput.value = change.toFixed(2);
-    } else {
-        changeInput.value = "";
-    }
-}
+        total.value = 'Php ' + totalPrice.toFixed(2)
+
+        cash.addEventListener('keyup', function () {
+          var cashTendered = parseFloat(cash.value)
+          var changeAmount = cashTendered - totalPrice
+          if (!isNaN(changeAmount) && changeAmount >= 0) {
+            change.value = 'Php ' + changeAmount.toFixed(2)
+          } else {
+            change.value = 'Php 0.00'
+          }
+        })
+      }
+
+      qty1.addEventListener('keyup', addOrder)
+      qty2.addEventListener('keyup', addOrder)
+      qty3.addEventListener('keyup', addOrder)
