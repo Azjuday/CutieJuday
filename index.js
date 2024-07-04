@@ -4,9 +4,8 @@ var products = [
     { id: 3, name: "Cappuccino", price: 190.00 },
     { id: 4, name: "Americano Coffee", price: 180.00 },
     { id: 5, name: "Caffe Mocha", price: 230.00 },
-    { id: 6, name: "Triple Nut Caramel", price: 300.00 },
-    { id: 7, name: "Coffee Caramel", price: 160.00 },
-    { id: 8, name: "Iced Coffee Creamcial", price: 335.00 }
+    { id: 6, name: "Coffee Caramel", price: 160.00 },
+    { id: 7, name: "Iced Coffee Creamcial", price: 335.00 }
 ];
 
 
