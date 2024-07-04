@@ -1,12 +1,12 @@
 var products = [
-    { id: 1, name: "Blueberry Cheesecake", price: 200.00 },
-    { id: 2, name: "Cool Mint", price: 300.00 },
-    { id: 3, name: "Neapolitan", price: 270.00 },
-    { id: 4, name: "Raspberry and White Chocolate", price: 190.00 },
-    { id: 5, name: "Strawberry Marshmallow", price: 250.00 },
+    { id: 1, name: "Affogato", price: 150.00 },
+    { id: 2, name: "Coffee Choco", price: 95.00 },
+    { id: 3, name: "Cappuccino", price: 190.00 },
+    { id: 4, name: "Americano Coffee", price: 180.00 },
+    { id: 5, name: "Caffe Mocha", price: 230.00 },
     { id: 6, name: "Triple Nut Caramel", price: 300.00 },
-    { id: 7, name: "Pina Colada", price: 250.00 },
-    { id: 8, name: "Vanilla Special", price: 200.00 }
+    { id: 7, name: "Coffee Caramel", price: 160.00 },
+    { id: 8, name: "Iced Coffee Creamcial", price: 335.00 }
 ];
 
 
