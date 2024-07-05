@@ -19,10 +19,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         for (let i = 1; i <= 8; i++) {
             var qtyInput = document.getElementById("qty" + i);
-            var productTitle = document.querySelector("#qty" + i).closest(".card-body").querySelector(".card-title").innerText;
+            if (!qtyInput) continue;
+            var productTitle = qtyInput.closest(".card-body").querySelector(".card-title").innerText;
             var productPrice = parseFloat(document.getElementById("price" + i).innerText);
 
-            if (qtyInput && qtyInput.value > 0) {
+            if (qtyInput.value > 0) {
                 var order = `${qtyInput.value} pcs x ${productTitle} - ₱${(qtyInput.value * productPrice).toFixed(2)}\n`;
                 carts.value += order;
             }
@@ -36,14 +37,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         for (let i = 1; i <= 8; i++) {
             var qtyInput = document.getElementById("qty" + i);
+            if (!qtyInput) continue;
             var productPrice = parseFloat(document.getElementById("price" + i).innerText);
 
-            if (qtyInput) {
-                total += qtyInput.value * productPrice;
-            }
+            total += qtyInput.value * productPrice;
         }
 
         document.getElementById("total").value = total.toFixed(2); // Update total input
+        console.log("Total Updated: ", total.toFixed(2)); // Debugging
     }
 
     function calculateChange() {
@@ -51,6 +52,12 @@ document.addEventListener('DOMContentLoaded', function() {
         var cash = parseFloat(cashInput.value);
         var change = cash - total;
 
+        if (isNaN(change)) {
+            alert("Please enter a valid amount of cash.");
+            return;
+        }
+
         document.getElementById("change").value = change.toFixed(2); // Update change input
+        console.log("Change Calculated: ", change.toFixed(2)); // Debugging
     }
 });
